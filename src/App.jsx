@@ -3,6 +3,7 @@ import Photo from "./components/Photo"
 import Rvsp from "./components/Rvsp"
 import Schedule from "./components/Schedule"
 import LocationInfo from "./components/LocationInfo"
+import GuestForm from "./components/GuestForm"
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
           <LocationInfo />
         </section>
         <section id="rvsp">
-          <Rvsp />
+          <GuestForm />
         </section>
         <section id="photo">
           <Photo />

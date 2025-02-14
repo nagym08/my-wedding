@@ -13,7 +13,6 @@ function Schedule() {
         <li>23:00 torta</li>
         <li>00:00 menyecsketánc</li>
       </ul>
-      <span>Maps pin comes here</span>
     </div>
   )
 }
