@@ -19,23 +19,23 @@ function GuestForm() {
         </div>
         <p>Spec étrend</p>
         <div>
-          <input id="dietVega" type="radio" value="Vega" />
+          <input id="dietVega" type="checkbox" value="Vega" />
           <label htmlFor="dietVega">Vega</label>
         </div>
         <div>
-          <input id="dietVegan" type="radio" value="Vegán" />
+          <input id="dietVegan" type="checkbox" value="Vegán" />
           <label htmlFor="dietVegan">Vegán</label>
         </div>
         <div>
-          <input id="dietDiab" type="radio" value="Diabétesz" />
+          <input id="dietDiab" type="checkbox" value="Diabétesz" />
           <label htmlFor="dietDiab">Diabétesz</label>
         </div>
         <div>
-          <input id="dietGluten" type="radio" value="Gluténmentes" />
+          <input id="dietGluten" type="checkbox" value="Gluténmentes" />
           <label htmlFor="dietGluten">Gluténmentes</label>
         </div>
         <div>
-          <input id="dietLactose" type="radio" value="Laktózmentes" />
+          <input id="dietLactose" type="checkbox" value="Laktózmentes" />
           <label htmlFor="dietLactose">Laktózmentes</label>
         </div>
         <p>Szállást kérek</p>
