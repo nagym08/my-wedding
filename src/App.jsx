@@ -1,33 +1,25 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import Photo from './components/Photo'
+import Rvsp from './components/Rvsp'
+import Schedule from './components/Schedule'
+import LocationInfo from './components/LocationInfo'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <nav className="header">
+      <a href="#schedule">Menetred</a>
+      <a href="#location">Helyszín</a>
+      <a href="#rvsp">RVSP</a>
+      <a href="#photo">Fotó</a>
+    </nav>
+    <main>
+      <section id="schedule"><Schedule/></section>
+      <section id="location"><LocationInfo/></section>
+      <section id="rvsp"><Rvsp/></section>
+      <section id="photo"><Photo/></section>
+    </main>
     </>
   )
 }
