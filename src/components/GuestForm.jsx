@@ -1,13 +1,7 @@
-import React, { useState } from 'react';
-import ReactModal from 'react-modal';
+import React from 'react';
 import AdditonalGuests from './AdditonalGuests';
 
 function GuestForm() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleModalOpen = () => setIsModalOpen(true);
-  const handleModalClose = () => setIsModalOpen(false);
-
   return (
     <>
       <div className="section">
@@ -64,21 +58,10 @@ function GuestForm() {
             <input id="transferNo" type="radio" name="transfer" value="Nem" />
             <label htmlFor="transferNo">Nem</label>
           </div>
-          <button type="button" onClick={handleModalOpen}>
-            További vendég
-          </button>
           <button type="submit">Beküldés</button>
         </form>
-      </div>
-      <ReactModal isOpen={isModalOpen}>
         <AdditonalGuests />
-        <button type="button" onClick={handleModalClose}>
-          Mentés
-        </button>
-        <button type="button" onClick={handleModalClose}>
-          Bezárás
-        </button>
-      </ReactModal>
+      </div>
     </>
   );
 }
