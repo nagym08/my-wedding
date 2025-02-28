@@ -1,10 +1,10 @@
 import React from 'react';
-import AdditonalGuests from './AdditonalGuests';
+import AdditionalGuests from './AdditionalGuests';
 import { FormProvider, useForm } from 'react-hook-form';
 
 function GuestForm() {
   const formMethods = useForm({
-    defaultValues: { specDiet: [], additonalGuests: [] },
+    defaultValues: { specDiet: [], additionalGuests: [] },
   });
   const {
     register,
@@ -12,7 +12,10 @@ function GuestForm() {
     formState: { errors, isValid },
   } = formMethods;
 
-  const submit = (data) => console.log(data);
+  const submit = (data) => {
+    const { additionalGuests, ...mainGuest } = data;
+    console.log([mainGuest, ...additionalGuests]);
+  };
 
   return (
     <FormProvider {...formMethods}>
@@ -124,7 +127,7 @@ function GuestForm() {
             Beküldés
           </button>
         </form>
-        <AdditonalGuests />
+        <AdditionalGuests />
       </div>
     </FormProvider>
   );

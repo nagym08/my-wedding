@@ -1,12 +1,19 @@
 import React, { Fragment } from 'react';
 import AdditionalGuestForm from './AdditionalGuestForm';
-import { useFieldArray } from 'react-hook-form';
+import { useFieldArray, useFormContext } from 'react-hook-form';
 
-function AdditonalGuests() {
-  const { fields, append, remove } = useFieldArray({ name: 'additonalGuests' });
+function AdditionalGuests() {
+  const formMethods = useFormContext();
+  const { getValues } = formMethods;
+  const { fields, append, remove } = useFieldArray({ name: 'additionalGuests' });
 
   const addGuest = () => {
-    append({ specDiet: [] });
+    append({
+      isAttending: getValues('isAttending'),
+      isAccomodationRequired: getValues('isAccomodationRequired'),
+      isTransferRequired: getValues('isTransferRequired'),
+      specDiet: [],
+    });
   };
 
   const removeGuest = (selectedIndex) => {
@@ -32,4 +39,4 @@ function AdditonalGuests() {
   );
 }
 
-export default AdditonalGuests;
+export default AdditionalGuests;

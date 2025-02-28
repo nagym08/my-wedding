@@ -12,13 +12,13 @@ function AdditionalGuestForm({ guestIndex }) {
         <input
           id={`name${guestIndex}`}
           type="text"
-          {...register(`additonalGuests[${guestIndex}].name`, { required: true })}
+          {...register(`additionalGuests[${guestIndex}].name`, { required: true })}
         />
         <label htmlFor={`email${guestIndex}`}>E-mail</label>
         <input
           id={`email${guestIndex}`}
           type="email"
-          {...register(`additonalGuests[${guestIndex}].email`, {
+          {...register(`additionalGuests[${guestIndex}].email`, {
             required: true,
             pattern: {
               value: /\S+@\S+\.\S+/,
@@ -32,7 +32,7 @@ function AdditionalGuestForm({ guestIndex }) {
             id={`dietVega${guestIndex}`}
             type="checkbox"
             value="Vega"
-            {...register(`additonalGuests[${guestIndex}].specDiet`)}
+            {...register(`additionalGuests[${guestIndex}].specDiet`)}
           />
           Vega
         </label>
@@ -41,7 +41,7 @@ function AdditionalGuestForm({ guestIndex }) {
             id={`dietVegan${guestIndex}`}
             type="checkbox"
             value="Vegán"
-            {...register(`additonalGuests[${guestIndex}].specDiet`)}
+            {...register(`additionalGuests[${guestIndex}].specDiet`)}
           />
           Vegán
         </label>
@@ -50,7 +50,7 @@ function AdditionalGuestForm({ guestIndex }) {
             id={`dietDiab${guestIndex}`}
             type="checkbox"
             value="Diabétesz"
-            {...register(`additonalGuests[${guestIndex}].specDiet`)}
+            {...register(`additionalGuests[${guestIndex}].specDiet`)}
           />
           Diabétesz
         </label>
@@ -59,7 +59,7 @@ function AdditionalGuestForm({ guestIndex }) {
             id={`dietGluten${guestIndex}`}
             type="checkbox"
             value="Gluténmentes"
-            {...register(`additonalGuests[${guestIndex}].specDiet`)}
+            {...register(`additionalGuests[${guestIndex}].specDiet`)}
           />
           Gluténmentes
         </label>
@@ -68,7 +68,7 @@ function AdditionalGuestForm({ guestIndex }) {
             id={`dietLactose${guestIndex}`}
             type="checkbox"
             value="Laktózmentes"
-            {...register(`additonalGuests[${guestIndex}].specDiet`)}
+            {...register(`additionalGuests[${guestIndex}].specDiet`)}
           />
           Laktózmentes
         </label>
