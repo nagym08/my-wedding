@@ -1,29 +1,28 @@
-import React, { useState } from 'react';
+import React, { Fragment } from 'react';
 import AdditionalGuestForm from './AdditionalGuestForm';
-
-const defaultGuestForm = { name: '', email: '', diet: '' };
+import { useFieldArray } from 'react-hook-form';
 
 function AdditonalGuests() {
-  const [guests, setGuests] = useState([]);
+  const { fields, append, remove } = useFieldArray({ name: 'additonalGuests' });
 
   const addGuest = () => {
-    setGuests((prev) => [...prev, { ...defaultGuestForm }]);
+    append({ specDiet: [] });
   };
 
   const removeGuest = (selectedIndex) => {
-    setGuests((prev) => [...prev.filter((_, index) => selectedIndex !== index)]);
+    remove(selectedIndex);
   };
 
   return (
     <>
       <div className="flex-row">
-        {guests.map((g, index) => (
-          <>
-            <AdditionalGuestForm />
+        {fields.map((field, index) => (
+          <Fragment key={field.id}>
+            <AdditionalGuestForm guestIndex={index} />
             <button type="button" onClick={() => removeGuest(index)}>
               Töröl
             </button>
-          </>
+          </Fragment>
         ))}
         <button type="button" onClick={addGuest}>
           Vendég hozzáadása

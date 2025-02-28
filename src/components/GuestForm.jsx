@@ -1,68 +1,132 @@
 import React from 'react';
 import AdditonalGuests from './AdditonalGuests';
+import { FormProvider, useForm } from 'react-hook-form';
 
 function GuestForm() {
+  const formMethods = useForm({
+    defaultValues: { specDiet: [], additonalGuests: [] },
+  });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = formMethods;
+
+  const submit = (data) => console.log(data);
+
   return (
-    <>
+    <FormProvider {...formMethods}>
       <div className="section">
-        <form className="flex-column">
-          <label>név</label>
-          <input type="text" />
-          <label>email</label>
-          <input type="email" />
+        <form className="flex-column" onSubmit={handleSubmit(submit)}>
+          <label htmlFor="name">Név</label>
+          <input id="name" type="text" {...register('name', { required: true })} />
+          <label htmlFor="email">E-mail</label>
+          <input
+            id="email"
+            type="email"
+            {...register('email', {
+              required: true,
+              pattern: {
+                value: /\S+@\S+\.\S+/,
+                message: 'Érvénytelen e-mail cím formátum',
+              },
+            })}
+          />
           <p>Részt veszek az esküvőn</p>
-          <div>
-            <input id="attendanceYes" type="radio" name="attendance" value="Igen" />
-            <label htmlFor="attendanceYes">Igen</label>
-          </div>
-          <div>
-            <input id="attendanceNo" type="radio" name="attendance" value="Nem" />
-            <label htmlFor="attendanceNo">Nem</label>
-          </div>
-          <p>Spec étrend</p>
-          <div>
-            <input id="dietVega" type="checkbox" value="Vega" />
-            <label htmlFor="dietVega">Vega</label>
-          </div>
-          <div>
-            <input id="dietVegan" type="checkbox" value="Vegán" />
-            <label htmlFor="dietVegan">Vegán</label>
-          </div>
-          <div>
-            <input id="dietDiab" type="checkbox" value="Diabétesz" />
-            <label htmlFor="dietDiab">Diabétesz</label>
-          </div>
-          <div>
-            <input id="dietGluten" type="checkbox" value="Gluténmentes" />
-            <label htmlFor="dietGluten">Gluténmentes</label>
-          </div>
-          <div>
-            <input id="dietLactose" type="checkbox" value="Laktózmentes" />
-            <label htmlFor="dietLactose">Laktózmentes</label>
-          </div>
+          <label htmlFor="attendanceYes">
+            <input
+              id="attendanceYes"
+              type="radio"
+              name="attendance"
+              value="Igen"
+              {...register('isAttending', { required: true })}
+            />
+            Igen
+          </label>
+          <label htmlFor="attendanceNo">
+            <input
+              id="attendanceNo"
+              type="radio"
+              name="attendance"
+              value="Nem"
+              {...register('isAttending', { required: true })}
+            />
+            Nem
+          </label>
+
           <p>Szállást kérek</p>
-          <div>
-            <input id="accomodationYes" type="radio" name="accomodation" value="Igen" />
-            <label htmlFor="accomodationYes">Igen</label>
-          </div>
-          <div>
-            <input id="accomodationNo" type="radio" name="accomodation" value="Nem" />
-            <label htmlFor="accomodationNo">Nem</label>
-          </div>
+          <label htmlFor="accomodationYes">
+            <input
+              id="accomodationYes"
+              type="radio"
+              name="accomodation"
+              value="Igen"
+              {...register('isAccomodationRequired', { required: true })}
+            />
+            Igen
+          </label>
+
+          <label htmlFor="accomodationNo">
+            <input
+              id="accomodationNo"
+              type="radio"
+              name="accomodation"
+              value="Nem"
+              {...register('isAccomodationRequired', { required: true })}
+            />
+            Nem
+          </label>
           <p>Transzfert kérek</p>
-          <div>
-            <input id="transferYes" type="radio" name="transfer" value="Igen" />
-            <label htmlFor="transferYes">Igen</label>
-          </div>
-          <div>
-            <input id="transferNo" type="radio" name="transfer" value="Nem" />
-            <label htmlFor="transferNo">Nem</label>
-          </div>
-          <button type="submit">Beküldés</button>
+          <label htmlFor="transferYes">
+            <input
+              id="transferYes"
+              type="radio"
+              name="transfer"
+              value="Igen"
+              {...register('isTransferRequired', { required: true })}
+            />
+            Igen
+          </label>
+
+          <label htmlFor="transferNo">
+            <input
+              id="transferNo"
+              type="radio"
+              name="transfer"
+              value="Nem"
+              {...register('isTransferRequired', { required: true })}
+            />
+            Nem
+          </label>
+
+          <p>Spec étrend</p>
+          <label htmlFor="dietVega">
+            <input id="dietVega" type="checkbox" value="Vega" {...register('specDiet')} />
+            Vega
+          </label>
+          <label htmlFor="dietVegan">
+            <input id="dietVegan" type="checkbox" value="Vegán" {...register('specDiet')} />
+            Vegán
+          </label>
+          <label htmlFor="dietDiab">
+            <input id="dietDiab" type="checkbox" value="Diabétesz" {...register('specDiet')} />
+            Diabétesz
+          </label>
+          <label htmlFor="dietGluten">
+            <input id="dietGluten" type="checkbox" value="Gluténmentes" {...register('specDiet')} />
+            Gluténmentes
+          </label>
+          <label htmlFor="dietLactose">
+            <input id="dietLactose" type="checkbox" value="Laktózmentes" {...register('specDiet')} />
+            Laktózmentes
+          </label>
+          <button type="submit" disabled={!isValid}>
+            Beküldés
+          </button>
         </form>
         <AdditonalGuests />
       </div>
-    </>
+    </FormProvider>
   );
 }
 
