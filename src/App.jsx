@@ -5,7 +5,7 @@ import LocationInfo from './components/LocationInfo';
 import GuestForm from './components/GuestForm';
 import { createClient } from '@supabase/supabase-js';
 
-export const supabaseClient = createClient('INSERT_URL', 'INSERT_KEY');
+export const supabaseClient = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_API_KEY);
 
 function App() {
   return (
