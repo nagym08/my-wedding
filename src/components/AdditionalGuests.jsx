@@ -9,10 +9,10 @@ function AdditionalGuests() {
 
   const addGuest = () => {
     append({
-      isAttending: getValues('isAttending'),
-      isAccomodationRequired: getValues('isAccomodationRequired'),
-      isTransferRequired: getValues('isTransferRequired'),
-      specDiet: [],
+      is_attending: getValues('is_attending'),
+      requires_accomodation: getValues('requires_accomodation'),
+      requires_transfer: getValues('requires_transfer'),
+      diet: [],
     });
   };
 

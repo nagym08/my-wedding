@@ -1,10 +1,12 @@
 import React from 'react';
 import AdditionalGuests from './AdditionalGuests';
 import { FormProvider, useForm } from 'react-hook-form';
+import useSupabase from '../hooks/useSupabase';
 
 function GuestForm() {
+  const { send } = useSupabase();
   const formMethods = useForm({
-    defaultValues: { specDiet: [], additionalGuests: [] },
+    defaultValues: { diet: [], additionalGuests: [] },
   });
   const {
     register,
@@ -12,9 +14,10 @@ function GuestForm() {
     formState: { errors, isValid },
   } = formMethods;
 
-  const submit = (data) => {
+  const submit = async (data) => {
     const { additionalGuests, ...mainGuest } = data;
     console.log([mainGuest, ...additionalGuests]);
+    await send([mainGuest, ...additionalGuests]);
   };
 
   return (
@@ -41,8 +44,8 @@ function GuestForm() {
               id="attendanceYes"
               type="radio"
               name="attendance"
-              value="Igen"
-              {...register('isAttending', { required: true })}
+              value={true}
+              {...register('is_attending', { required: true })}
             />
             Igen
           </label>
@@ -51,8 +54,8 @@ function GuestForm() {
               id="attendanceNo"
               type="radio"
               name="attendance"
-              value="Nem"
-              {...register('isAttending', { required: true })}
+              value={false}
+              {...register('is_attending', { required: true })}
             />
             Nem
           </label>
@@ -63,8 +66,8 @@ function GuestForm() {
               id="accomodationYes"
               type="radio"
               name="accomodation"
-              value="Igen"
-              {...register('isAccomodationRequired', { required: true })}
+              value={true}
+              {...register('requires_accomodation', { required: true })}
             />
             Igen
           </label>
@@ -74,8 +77,8 @@ function GuestForm() {
               id="accomodationNo"
               type="radio"
               name="accomodation"
-              value="Nem"
-              {...register('isAccomodationRequired', { required: true })}
+              value={false}
+              {...register('requires_accomodation', { required: true })}
             />
             Nem
           </label>
@@ -85,8 +88,8 @@ function GuestForm() {
               id="transferYes"
               type="radio"
               name="transfer"
-              value="Igen"
-              {...register('isTransferRequired', { required: true })}
+              value={true}
+              {...register('requires_transfer', { required: true })}
             />
             Igen
           </label>
@@ -96,31 +99,31 @@ function GuestForm() {
               id="transferNo"
               type="radio"
               name="transfer"
-              value="Nem"
-              {...register('isTransferRequired', { required: true })}
+              value={false}
+              {...register('requires_transfer', { required: true })}
             />
             Nem
           </label>
 
           <p>Spec étrend</p>
           <label htmlFor="dietVega">
-            <input id="dietVega" type="checkbox" value="Vega" {...register('specDiet')} />
+            <input id="dietVega" type="checkbox" value="Vega" {...register('diet')} />
             Vega
           </label>
           <label htmlFor="dietVegan">
-            <input id="dietVegan" type="checkbox" value="Vegán" {...register('specDiet')} />
+            <input id="dietVegan" type="checkbox" value="Vegán" {...register('diet')} />
             Vegán
           </label>
           <label htmlFor="dietDiab">
-            <input id="dietDiab" type="checkbox" value="Diabétesz" {...register('specDiet')} />
+            <input id="dietDiab" type="checkbox" value="Diabétesz" {...register('diet')} />
             Diabétesz
           </label>
           <label htmlFor="dietGluten">
-            <input id="dietGluten" type="checkbox" value="Gluténmentes" {...register('specDiet')} />
+            <input id="dietGluten" type="checkbox" value="Gluténmentes" {...register('diet')} />
             Gluténmentes
           </label>
           <label htmlFor="dietLactose">
-            <input id="dietLactose" type="checkbox" value="Laktózmentes" {...register('specDiet')} />
+            <input id="dietLactose" type="checkbox" value="Laktózmentes" {...register('diet')} />
             Laktózmentes
           </label>
           <button type="submit" disabled={!isValid}>

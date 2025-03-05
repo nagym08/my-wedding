@@ -1,9 +1,11 @@
-import "./App.css"
-import Photo from "./components/Photo"
-import Rvsp from "./components/Rvsp"
-import Schedule from "./components/Schedule"
-import LocationInfo from "./components/LocationInfo"
-import GuestForm from "./components/GuestForm"
+import './App.css';
+import Photo from './components/Photo';
+import Schedule from './components/Schedule';
+import LocationInfo from './components/LocationInfo';
+import GuestForm from './components/GuestForm';
+import { createClient } from '@supabase/supabase-js';
+
+export const supabaseClient = createClient('INSERT_URL', 'INSERT_KEY');
 
 function App() {
   return (
@@ -29,7 +31,7 @@ function App() {
         </section>
       </main>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

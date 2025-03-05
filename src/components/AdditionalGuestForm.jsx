@@ -19,7 +19,6 @@ function AdditionalGuestForm({ guestIndex }) {
           id={`email${guestIndex}`}
           type="email"
           {...register(`additionalGuests[${guestIndex}].email`, {
-            required: true,
             pattern: {
               value: /\S+@\S+\.\S+/,
               message: 'Érvénytelen e-mail cím formátum',
@@ -32,7 +31,7 @@ function AdditionalGuestForm({ guestIndex }) {
             id={`dietVega${guestIndex}`}
             type="checkbox"
             value="Vega"
-            {...register(`additionalGuests[${guestIndex}].specDiet`)}
+            {...register(`additionalGuests[${guestIndex}].diet`)}
           />
           Vega
         </label>
@@ -41,7 +40,7 @@ function AdditionalGuestForm({ guestIndex }) {
             id={`dietVegan${guestIndex}`}
             type="checkbox"
             value="Vegán"
-            {...register(`additionalGuests[${guestIndex}].specDiet`)}
+            {...register(`additionalGuests[${guestIndex}].diet`)}
           />
           Vegán
         </label>
@@ -50,7 +49,7 @@ function AdditionalGuestForm({ guestIndex }) {
             id={`dietDiab${guestIndex}`}
             type="checkbox"
             value="Diabétesz"
-            {...register(`additionalGuests[${guestIndex}].specDiet`)}
+            {...register(`additionalGuests[${guestIndex}].diet`)}
           />
           Diabétesz
         </label>
@@ -59,7 +58,7 @@ function AdditionalGuestForm({ guestIndex }) {
             id={`dietGluten${guestIndex}`}
             type="checkbox"
             value="Gluténmentes"
-            {...register(`additionalGuests[${guestIndex}].specDiet`)}
+            {...register(`additionalGuests[${guestIndex}].diet`)}
           />
           Gluténmentes
         </label>
@@ -68,7 +67,7 @@ function AdditionalGuestForm({ guestIndex }) {
             id={`dietLactose${guestIndex}`}
             type="checkbox"
             value="Laktózmentes"
-            {...register(`additionalGuests[${guestIndex}].specDiet`)}
+            {...register(`additionalGuests[${guestIndex}].diet`)}
           />
           Laktózmentes
         </label>
