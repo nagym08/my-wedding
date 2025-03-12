@@ -1,20 +1,64 @@
-import "react"
+import 'react';
+
+function ScheduleItem({ time, title, description }) {
+  return (
+    <div style={{ display: 'flex', width: '100%' }}>
+      <div style={{ width: '20%' }}>
+        <p className="secondary">{time}</p>
+      </div>
+      <div style={{ width: '80%' }}>
+        <p>{title}</p>
+        <p>{description}</p>
+      </div>
+    </div>
+  );
+}
 
 function Schedule() {
   return (
     <div className="section">
       <h1>Menetrend</h1>
-      <h2>2025. 09. 06.</h2>
-      <ul>
-        <li>16:00 vendégvárás</li>
-        <li>17:00 szertás</li>
-        <li>18:00 grautláció</li>
-        <li>19:30 vacsora</li>
-        <li>23:00 torta</li>
-        <li>00:00 menyecsketánc</li>
-      </ul>
+      {scheduleItems.map((si) => (
+        <ScheduleItem time={si.time} title={si.title} description={si.description} />
+      ))}
     </div>
-  )
+  );
 }
 
-export default Schedule
+export default Schedule;
+
+const scheduleItems = [
+  {
+    time: '16:00',
+    title: 'Vendégvárás',
+    description:
+      'Szeretettel várunk benneteket egy kis harapnivalóval és frissítővel, hogy kellemesen induljon az este!',
+  },
+  {
+    time: '17:00',
+    title: 'Szertartás',
+    description: 'Elérkezett a nagy pillanat! Meghitt szertartásunkon hivatalosan is összekötjük életünket.',
+  },
+  {
+    time: '18:00',
+    title: 'Gratuláció',
+    description: 'Örömmel fogadjuk jókívánságaitokat, öleléseiteket és kedves szavaitokat ezen a különleges napon.',
+  },
+  {
+    time: '19:30',
+    title: 'Vacsora',
+    description:
+      'Ízletes fogásokkal és finom italokkal várunk titeket, hogy közösen ünnepeljünk egy felejthetetlen lakomával.',
+  },
+  {
+    time: '23:00',
+    title: 'Torta',
+    description: 'Elérkezett az édesség ideje! Vágjuk fel együtt az esküvői tortát, és élvezzük az édes pillanatokat.',
+  },
+  {
+    time: '00:00',
+    title: 'Menyecsketánc',
+    description:
+      'Indulhat a menyecsketánc! A menyasszony új ruhában táncra perdül, és mindenki csatlakozhat az ünnepléshez.',
+  },
+];
