@@ -66,6 +66,7 @@ body {
 .rest-section {
   background-color: white;
   border-radius: 10px;
+  padding: 30px;
 }
 
 .flex-column {
@@ -116,4 +117,8 @@ body {
 
 .lower-section-image {
   margin-top: 2em;
+}
+
+.width-100 {
+  width: 100%;
 }

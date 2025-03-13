@@ -1,10 +1,11 @@
 import React from 'react';
 import lantai from '../assets/lantai.png';
+import Section from './Section';
 
 function LocationInfo() {
   return (
     <div className="section">
-      <div className="flex-column rest-section">
+      <Section className="flex-column rest-section">
         <div style={{ display: 'flex', width: '100%' }}>
           <div style={{ width: '70%' }}>
             <p className="secondary">Helyszín</p>
@@ -16,13 +17,17 @@ function LocationInfo() {
               </a>
               ]
             </p>
+            <p>
+              A szállások lefoglalásában segítünk, amint letisztul a végléges létszám. Szállásáfogalási igényeteket a
+              lentebbi formban tudjátok megtenni!
+            </p>
             <p>Ha bármilyen kérdésetek van a megközelítéssel kapcsolatban, keressetek minket bátran!</p>
           </div>
           <div style={{ width: '30%' }}>
             <img className="header-image" src={lantai} />
           </div>
         </div>
-      </div>
+      </Section>
     </div>
   );
 }
