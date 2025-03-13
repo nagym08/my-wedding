@@ -16,8 +16,8 @@ const Header = () => {
         </div> */}
         <div style={{ flex: '0 0 100%', textAlign: 'center' }}>
           <span className="title">Nóri & Miki</span>
-          <p className="secondary">2025.09.06. - Lantai birtok, Nagykőrös</p>
-          <p className="secondary">Már csak {daysToGo} nap!</p>
+          <p style={{ color: 'white' }}>2025.09.06. - Lantai birtok, Nagykőrös</p>
+          <p style={{ color: 'white' }}>Már csak {daysToGo} nap!</p>
         </div>
         {/* <div style={{ flex: '0 0 20%', height: '100%' }}>
           <img className="header-image" src={headerRight} />

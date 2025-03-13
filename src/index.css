@@ -1,5 +1,5 @@
 :root {
-  --secondary: #e2725b;
+  --secondary: #4f1507;
 }
 
 html {
@@ -8,6 +8,8 @@ html {
 
 body {
   font-family: 'Montserrat', sans-serif;
+  background-color: var(--secondary);
+  color: var(--secondary);
 }
 
 .secondary {
@@ -20,7 +22,7 @@ body {
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  background: white;
+  background: var(--secondary);
   padding: 15px 0px;
   position: sticky;
   top: 0;
@@ -30,7 +32,7 @@ body {
 
 .navbar a {
   text-decoration: none;
-  color: black;
+  color: white;
 }
 
 .active {
@@ -54,6 +56,16 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.schedule-section {
+  background-color: white;
+  border-radius: 0 0 10px 10px;
+}
+
+.rest-section {
+  background-color: white;
+  border-radius: 10px;
 }
 
 .flex-column {
@@ -91,4 +103,17 @@ body {
   font-weight: 400;
   font-style: normal;
   font-size: 5em;
+  color: white;
+}
+
+.section-image {
+  max-height: 4em;
+}
+
+.upper-section-image {
+  margin-bottom: 2em;
+}
+
+.lower-section-image {
+  margin-top: 2em;
 }

@@ -1,4 +1,5 @@
 import 'react';
+import Section from './Section';
 
 function ScheduleItem({ time, title, description }) {
   return (
@@ -8,7 +9,7 @@ function ScheduleItem({ time, title, description }) {
       </div>
       <div style={{ width: '80%' }}>
         <p>{title}</p>
-        <p>{description}</p>
+        {/* <p>{description}</p> */}
       </div>
     </div>
   );
@@ -16,12 +17,16 @@ function ScheduleItem({ time, title, description }) {
 
 function Schedule() {
   return (
-    <div className="section">
+    <Section className="section schedule-section">
       <h1>Menetrend</h1>
       {scheduleItems.map((si) => (
-        <ScheduleItem time={si.time} title={si.title} description={si.description} />
+        <div style={{ display: 'flex', width: '60%', marginBottom: '2em' }}>
+          <div>{si.time}</div>
+          <div style={{ flex: 1, borderBottom: '1px dotted' }} />
+          <div>{si.title}</div>
+        </div>
       ))}
-    </div>
+    </Section>
   );
 }
 
