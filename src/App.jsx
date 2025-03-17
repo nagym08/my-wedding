@@ -3,7 +3,7 @@ import './App.css';
 import Photo from './components/Photo';
 import Schedule from './components/Schedule';
 import LocationInfo from './components/LocationInfo';
-import GuestForm from './components/GuestForm';
+import Rsvp from './components/Rsvp';
 import { createClient } from '@supabase/supabase-js';
 import Header from './components/Header';
 
@@ -27,7 +27,7 @@ function App() {
               <LocationInfo />
             </section>
             <section id="rsvp">
-              <GuestForm />
+              <Rsvp />
             </section>
             <section id="photo">
               <Photo />

@@ -17,7 +17,7 @@ function ScheduleItem({ time, title, description }) {
 
 function Schedule() {
   return (
-    <Section className="section schedule-section">
+    <Section className="section">
       <h1>Menetrend</h1>
       {scheduleItems.map((si) => (
         <div key={si.time} style={{ display: 'flex', width: '60%', marginBottom: '2em' }}>

@@ -6,10 +6,10 @@ function LocationInfo() {
   return (
     <div className="section">
       <Section className="flex-column rest-section">
+        <h1>Helyszín</h1>
         <div style={{ display: 'flex', width: '100%' }}>
           <div style={{ width: '70%' }}>
-            <p className="secondary">Helyszín</p>
-            <h1>Lantai birtok, Nagykőrős</h1>
+            <h3>Lantai birtok, Nagykőrős</h3>
             <p>
               Térkép és útvonaltervező: [
               <a href="https://maps.app.goo.gl/V1Xa7Lo5P7tGpy7Q8" target="_blank" rel="noopener">

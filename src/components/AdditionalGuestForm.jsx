@@ -26,51 +26,55 @@ function AdditionalGuestForm({ guestIndex }) {
           })}
         />
         <p>Spec étrend</p>
-        <label htmlFor={`dietVega${guestIndex}`}>
-          <input
-            id={`dietVega${guestIndex}`}
-            type="checkbox"
-            value="Vega"
-            {...register(`additionalGuests[${guestIndex}].diet`)}
-          />
-          Vega
-        </label>
-        <label htmlFor={`dietVegan${guestIndex}`}>
-          <input
-            id={`dietVegan${guestIndex}`}
-            type="checkbox"
-            value="Vegán"
-            {...register(`additionalGuests[${guestIndex}].diet`)}
-          />
-          Vegán
-        </label>
-        <label htmlFor={`dietDiab${guestIndex}`}>
-          <input
-            id={`dietDiab${guestIndex}`}
-            type="checkbox"
-            value="Diabétesz"
-            {...register(`additionalGuests[${guestIndex}].diet`)}
-          />
-          Diabétesz
-        </label>
-        <label htmlFor={`dietGluten${guestIndex}`}>
-          <input
-            id={`dietGluten${guestIndex}`}
-            type="checkbox"
-            value="Gluténmentes"
-            {...register(`additionalGuests[${guestIndex}].diet`)}
-          />
-          Gluténmentes
-        </label>
-        <label htmlFor={`dietLactose${guestIndex}`}>
-          <input
-            id={`dietLactose${guestIndex}`}
-            type="checkbox"
-            value="Laktózmentes"
-            {...register(`additionalGuests[${guestIndex}].diet`)}
-          />
-          Laktózmentes
-        </label>
+        <div className="flex-row">
+          <label htmlFor={`dietVega${guestIndex}`}>
+            <input
+              id={`dietVega${guestIndex}`}
+              type="checkbox"
+              value="Vega"
+              {...register(`additionalGuests[${guestIndex}].diet`)}
+            />
+            Vega
+          </label>
+          <label htmlFor={`dietVegan${guestIndex}`}>
+            <input
+              id={`dietVegan${guestIndex}`}
+              type="checkbox"
+              value="Vegán"
+              {...register(`additionalGuests[${guestIndex}].diet`)}
+            />
+            Vegán
+          </label>
+          <label htmlFor={`dietDiab${guestIndex}`}>
+            <input
+              id={`dietDiab${guestIndex}`}
+              type="checkbox"
+              value="Diabétesz"
+              {...register(`additionalGuests[${guestIndex}].diet`)}
+            />
+            Diabétesz
+          </label>
+        </div>
+        <div className="flex-row">
+          <label htmlFor={`dietGluten${guestIndex}`}>
+            <input
+              id={`dietGluten${guestIndex}`}
+              type="checkbox"
+              value="Gluténmentes"
+              {...register(`additionalGuests[${guestIndex}].diet`)}
+            />
+            Gluténmentes
+          </label>
+          <label htmlFor={`dietLactose${guestIndex}`}>
+            <input
+              id={`dietLactose${guestIndex}`}
+              type="checkbox"
+              value="Laktózmentes"
+              {...register(`additionalGuests[${guestIndex}].diet`)}
+            />
+            Laktózmentes
+          </label>
+        </div>
       </form>
     </div>
   );
