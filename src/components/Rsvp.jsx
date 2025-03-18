@@ -1,8 +1,9 @@
 import React from 'react';
 import AdditionalGuests from './AdditionalGuests';
-import { FormProvider, useForm } from 'react-hook-form';
+import { FormProvider, useForm, Controller } from 'react-hook-form';
 import useSupabase from '../hooks/useSupabase';
 import Section from './Section';
+import { Button, Input } from 'antd';
 
 function Rsvp() {
   const { send } = useSupabase();
@@ -14,12 +15,13 @@ function Rsvp() {
     handleSubmit,
     formState: { errors, isValid },
     watch,
+    control,
   } = formMethods;
 
   const submit = async (data) => {
     const { additionalGuests, ...mainGuest } = data;
     console.log([mainGuest, ...additionalGuests]);
-    await send([mainGuest, ...additionalGuests]);
+    // await send([mainGuest, ...additionalGuests]);
   };
 
   const isAttending = watch('is_attending');
@@ -30,10 +32,34 @@ function Rsvp() {
         <Section className="flex-column rest-section ">
           <h1>RSVP</h1>
           <form className="flex-column" onSubmit={handleSubmit(submit)}>
-            <label htmlFor="name">Név</label>
-            <input id="name" type="text" {...register('name', { required: true })} />
-            <label htmlFor="email">E-mail</label>
-            <input
+            {/* <label htmlFor="name">Név</label> */}
+            <Controller
+              name="name"
+              control={control}
+              rules={{ required: true }}
+              render={({ field }) => (
+                <Input size="large" placeholder="Név" type="text" variant="underlined" {...field} />
+              )}
+            />
+            {/* <Input variant="underlined" type="text" {...register('name', { required: true })} /> */}
+            {/* <label htmlFor="name">Név</label>
+            <input id="name" type="text" {...register('name', { required: true })} /> */}
+            {/* <label htmlFor="email">E-mail</label> */}
+            <Controller
+              name="email"
+              control={control}
+              rules={{
+                required: true,
+                pattern: {
+                  value: /\S+@\S+\.\S+/,
+                  message: 'Érvénytelen e-mail cím formátum',
+                },
+              }}
+              render={({ field }) => (
+                <Input size="large" placeholder="E-mail" type="email" variant="underlined" {...field} />
+              )}
+            />
+            {/* <input
               id="email"
               type="email"
               {...register('email', {
@@ -43,7 +69,7 @@ function Rsvp() {
                   message: 'Érvénytelen e-mail cím formátum',
                 },
               })}
-            />
+            /> */}
             <p>Részt veszek az esküvőn</p>
             <div className="flex-row">
               <label htmlFor="attendanceYes">
@@ -146,9 +172,9 @@ function Rsvp() {
                 <AdditionalGuests />
               </>
             )}
-            <button type="submit" disabled={!isValid}>
+            <Button type="primary" htmlType="submit" disabled={!isValid}>
               Beküldés
-            </button>
+            </Button>
           </form>
         </Section>
       </div>
