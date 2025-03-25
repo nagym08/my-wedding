@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AdditionalGuests from './AdditionalGuests';
 import { FormProvider, useForm, Controller } from 'react-hook-form';
 import useSupabase from '../hooks/useSupabase';
@@ -8,8 +8,11 @@ import { Button, Input } from 'antd';
 function Rsvp() {
   const { send } = useSupabase();
   const formMethods = useForm({
-    defaultValues: { diet: [], additionalGuests: [] },
+    defaultValues: { diet: [] },
   });
+
+  const [additionalGuests, setAdditionalGuests] = useState([]);
+
   const {
     register,
     handleSubmit,
@@ -19,12 +22,20 @@ function Rsvp() {
   } = formMethods;
 
   const submit = async (data) => {
-    const { additionalGuests, ...mainGuest } = data;
-    console.log([mainGuest, ...additionalGuests]);
+    // const { additionalGuests, ...mainGuest } = data;
+    console.log([data, ...additionalGuests]);
     // await send([mainGuest, ...additionalGuests]);
   };
 
   const isAttending = watch('is_attending');
+
+  // const addAdditionalGuests = (guest) => {
+  //   setAdditionalGuests((prev) => [...prev, guest]);
+  // };
+
+  // const removeAdditionalGuests = (idx) => {
+  //   setAdditionalGuests((prev) => [...prev.filter((_, i) => i !== idx)]);
+  // };
 
   return (
     <FormProvider {...formMethods}>
@@ -169,7 +180,7 @@ function Rsvp() {
                     Laktózmentes
                   </label>
                 </div>
-                <AdditionalGuests />
+                <AdditionalGuests additionalGuests={additionalGuests} setAdditionalGuests={setAdditionalGuests} />
               </>
             )}
             <Button type="primary" htmlType="submit" disabled={!isValid}>
