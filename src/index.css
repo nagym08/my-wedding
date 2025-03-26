@@ -123,3 +123,26 @@ body {
 .width-100 {
   width: 100%;
 }
+
+/* TODO: media-query */
+.section-content {
+  width: 60%;
+}
+
+.guest-entry-container {
+  margin: 5px;
+  gap: 5px;
+}
+
+.guest-entry {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border: var(--secondary) 0.5px solid;
+  /* padding: 0 10px 0 10px; */
+}
+
+.guest-entry-button-container {
+  gap: 2px;
+}

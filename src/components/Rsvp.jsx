@@ -3,7 +3,7 @@ import AdditionalGuests from './AdditionalGuests';
 import { FormProvider, useForm, Controller } from 'react-hook-form';
 import useSupabase from '../hooks/useSupabase';
 import Section from './Section';
-import { Button, Input } from 'antd';
+import { Button, Divider, Input } from 'antd';
 
 function Rsvp() {
   const { send } = useSupabase();
@@ -29,21 +29,12 @@ function Rsvp() {
 
   const isAttending = watch('is_attending');
 
-  // const addAdditionalGuests = (guest) => {
-  //   setAdditionalGuests((prev) => [...prev, guest]);
-  // };
-
-  // const removeAdditionalGuests = (idx) => {
-  //   setAdditionalGuests((prev) => [...prev.filter((_, i) => i !== idx)]);
-  // };
-
   return (
     <FormProvider {...formMethods}>
       <div className="section">
-        <Section className="flex-column rest-section ">
+        <Section className="flex-column rest-section section-content">
           <h1>RSVP</h1>
-          <form className="flex-column" onSubmit={handleSubmit(submit)}>
-            {/* <label htmlFor="name">Név</label> */}
+          <form className="flex-column width-100" onSubmit={handleSubmit(submit)}>
             <Controller
               name="name"
               control={control}
@@ -52,10 +43,6 @@ function Rsvp() {
                 <Input size="large" placeholder="Név" type="text" variant="underlined" {...field} />
               )}
             />
-            {/* <Input variant="underlined" type="text" {...register('name', { required: true })} /> */}
-            {/* <label htmlFor="name">Név</label>
-            <input id="name" type="text" {...register('name', { required: true })} /> */}
-            {/* <label htmlFor="email">E-mail</label> */}
             <Controller
               name="email"
               control={control}
@@ -70,17 +57,6 @@ function Rsvp() {
                 <Input size="large" placeholder="E-mail" type="email" variant="underlined" {...field} />
               )}
             />
-            {/* <input
-              id="email"
-              type="email"
-              {...register('email', {
-                required: true,
-                pattern: {
-                  value: /\S+@\S+\.\S+/,
-                  message: 'Érvénytelen e-mail cím formátum',
-                },
-              })}
-            /> */}
             <p>Részt veszek az esküvőn</p>
             <div className="flex-row">
               <label htmlFor="attendanceYes">
@@ -155,7 +131,7 @@ function Rsvp() {
                   </label>
                 </div>
 
-                <p>Spec étrend</p>
+                <p>Speciális étrend</p>
                 <div className="flex-row">
                   <label htmlFor="dietVega">
                     <input id="dietVega" type="checkbox" value="Vega" {...register('diet')} />
@@ -169,8 +145,6 @@ function Rsvp() {
                     <input id="dietDiab" type="checkbox" value="Diabétesz" {...register('diet')} />
                     Diabétesz
                   </label>
-                </div>
-                <div className="flex-row">
                   <label htmlFor="dietGluten">
                     <input id="dietGluten" type="checkbox" value="Gluténmentes" {...register('diet')} />
                     Gluténmentes
@@ -180,6 +154,7 @@ function Rsvp() {
                     Laktózmentes
                   </label>
                 </div>
+                <Divider style={{ borderColor: '#4f1507' }}>További vendégek</Divider>
                 <AdditionalGuests additionalGuests={additionalGuests} setAdditionalGuests={setAdditionalGuests} />
               </>
             )}
