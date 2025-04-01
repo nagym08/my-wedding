@@ -5,10 +5,10 @@ import Section from './Section';
 function LocationInfo() {
   return (
     <div className="section">
-      <Section className="flex-column rest-section">
+      <Section className="flex-column rest-section section-content">
         <h1>Helyszín</h1>
         <div style={{ display: 'flex', width: '100%' }}>
-          <div style={{ width: '70%' }}>
+          <div style={{ textAlign: 'center' }}>
             <h3>Lantai birtok, Nagykőrős</h3>
             <p>
               Térkép és útvonaltervező: [
@@ -23,9 +23,9 @@ function LocationInfo() {
             </p>
             <p>Ha bármilyen kérdésetek van a megközelítéssel kapcsolatban, keressetek minket bátran!</p>
           </div>
-          <div style={{ width: '30%' }}>
+          {/* <div style={{ width: '30%' }}>
             <img className="header-image" src={lantai} />
-          </div>
+          </div> */}
         </div>
       </Section>
     </div>

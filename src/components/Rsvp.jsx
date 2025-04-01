@@ -154,13 +154,16 @@ function Rsvp() {
                     Laktózmentes
                   </label>
                 </div>
-                <Divider style={{ borderColor: '#4f1507' }}>További vendégek</Divider>
+                <Divider style={{ borderColor: '#4f1507', color: '#4f1507' }}>További vendégek</Divider>
                 <AdditionalGuests additionalGuests={additionalGuests} setAdditionalGuests={setAdditionalGuests} />
               </>
             )}
-            <Button type="primary" htmlType="submit" disabled={!isValid}>
+            {/* <Button type="default" htmlType="submit" disabled={!isValid}>
               Beküldés
-            </Button>
+            </Button> */}
+            <button className="button-59 button-59-primary" type="submit" disabled={!isValid}>
+              Beküldés
+            </button>
           </form>
         </Section>
       </div>
