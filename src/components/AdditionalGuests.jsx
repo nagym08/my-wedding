@@ -11,20 +11,18 @@ function AdditionalGuests({ additionalGuests, setAdditionalGuests }) {
     control,
     formState: { isValid },
   } = useForm({
-    defaultValues: { diet: [] },
+    defaultValues: { name: '', email: '', diet: [] },
   });
   const [isOpen, setIsOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(undefined);
 
   const addGuest = () => {
-    if (!selectedIndex) {
+    if (selectedIndex == null)
       setAdditionalGuests((prev) => [...prev, { name: getValues('name'), email: getValues('email') }]);
-      return;
-    }
-
-    setAdditionalGuests((prev) =>
-      prev.map((p, i) => (i === selectedIndex ? { name: getValues('name'), email: getValues('email') } : p))
-    );
+    else
+      setAdditionalGuests((prev) =>
+        prev.map((p, i) => (i === selectedIndex ? { name: getValues('name'), email: getValues('email') } : p))
+      );
 
     setIsOpen(false);
   };
@@ -49,14 +47,9 @@ function AdditionalGuests({ additionalGuests, setAdditionalGuests }) {
   useEffect(() => {
     if (selectedIndex === undefined) return;
 
-    if (selectedIndex === null) {
-      reset();
-      setIsOpen(true);
-      return;
-    }
+    if (selectedIndex === null) reset({ name: '', email: '' });
+    else reset({ name: additionalGuests[selectedIndex].name, email: additionalGuests[selectedIndex].email });
 
-    console.log({ name: additionalGuests[selectedIndex].name, email: additionalGuests[selectedIndex].email });
-    reset({ name: additionalGuests[selectedIndex].name, email: additionalGuests[selectedIndex].email });
     setIsOpen(true);
   }, [selectedIndex]);
 
@@ -76,7 +69,7 @@ function AdditionalGuests({ additionalGuests, setAdditionalGuests }) {
         onOk={() => addGuest()}
         onCancel={handleModalClose}
         footer={[
-          <button className="button-59" key="back" onClick={handleModalClose}>
+          <button className="button-59" style={{ marginRight: '5px' }} key="back" onClick={handleModalClose}>
             Mégse
           </button>,
           <button className="button-59 button-59-primary" key="submit" onClick={() => addGuest()} disabled={!isValid}>
@@ -85,6 +78,7 @@ function AdditionalGuests({ additionalGuests, setAdditionalGuests }) {
         ]}
       >
         <div>
+          <h1>{selectedIndex == null ? 'Vendég hozzáadása' : 'Vendég szerkesztése'}</h1>
           <form className="flex-column">
             <Controller
               name="name"

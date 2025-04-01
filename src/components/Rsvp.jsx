@@ -3,7 +3,7 @@ import AdditionalGuests from './AdditionalGuests';
 import { FormProvider, useForm, Controller } from 'react-hook-form';
 import useSupabase from '../hooks/useSupabase';
 import Section from './Section';
-import { Button, Divider, Input } from 'antd';
+import { Divider, Input } from 'antd';
 
 function Rsvp() {
   const { send } = useSupabase();
@@ -28,6 +28,10 @@ function Rsvp() {
   };
 
   const isAttending = watch('is_attending');
+
+  const handleChange = (value) => {
+    console.log(`selected ${value}`);
+  };
 
   return (
     <FormProvider {...formMethods}>
