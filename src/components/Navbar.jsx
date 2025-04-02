@@ -11,7 +11,7 @@ export function Navbar() {
         className={selectedMenuItem === 'schedule' ? 'active' : ''}
         onClick={() => handleSelection('schedule')}
       >
-        Menetred
+        Menetrend
       </a>
       <a
         href="#location"
@@ -21,15 +21,15 @@ export function Navbar() {
         Helyszín
       </a>
       <a href="#rsvp" className={selectedMenuItem === 'rsvp' ? 'active' : ''} onClick={() => handleSelection('rsvp')}>
-        RSVP
+        Visszajelzés
       </a>
-      <a
+      {/* <a
         href="#photo"
         className={selectedMenuItem === 'photo' ? 'active' : ''}
         onClick={() => handleSelection('photo')}
       >
         Fotó
-      </a>
+      </a> */}
     </nav>
   );
 }

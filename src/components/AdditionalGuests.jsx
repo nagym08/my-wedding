@@ -68,8 +68,17 @@ function AdditionalGuests({ additionalGuests, setAdditionalGuests }) {
         open={isOpen}
         onOk={() => addGuest()}
         onCancel={handleModalClose}
+        style={{ fontFamily: 'Cormorant Garamond', color: '#7a3b23' }}
+        centered={true}
+        closeIcon={false}
+        width={600}
         footer={[
-          <button className="button-59" style={{ marginRight: '5px' }} key="back" onClick={handleModalClose}>
+          <button
+            className="button-59"
+            style={{ marginRight: '5px', marginTop: '20px' }}
+            key="back"
+            onClick={handleModalClose}
+          >
             Mégse
           </button>,
           <button className="button-59 button-59-primary" key="submit" onClick={() => addGuest()} disabled={!isValid}>
@@ -92,7 +101,6 @@ function AdditionalGuests({ additionalGuests, setAdditionalGuests }) {
               name="email"
               control={control}
               rules={{
-                required: true,
                 pattern: {
                   value: /\S+@\S+\.\S+/,
                   message: 'Érvénytelen e-mail cím formátum',
@@ -102,25 +110,25 @@ function AdditionalGuests({ additionalGuests, setAdditionalGuests }) {
                 <Input size="large" placeholder="E-mail" type="email" variant="underlined" {...field} />
               )}
             />
-            <p>Speciális étrend</p>
+            <span style={{ ...fontSize20, marginTop: '15px' }}>Speciális étrend</span>
             <div className="flex-row">
-              <label htmlFor="guestDietVega">
+              <label style={fontSize20} htmlFor="guestDietVega">
                 <input id="guestDietVega" type="checkbox" value="Vega" {...register('guestDiet')} />
                 Vega
               </label>
-              <label htmlFor="guestDietVegan">
+              <label style={fontSize20} htmlFor="guestDietVegan">
                 <input id="guestDietVegan" type="checkbox" value="Vegán" {...register('guestDiet')} />
                 Vegán
               </label>
-              <label htmlFor="guestDietDiab">
-                <input id="guestDietDiab" type="checkbox" value="Diabétesz" {...register('guestDiet')} />
-                Diabétesz
+              <label style={fontSize20} htmlFor="guestDietDiab">
+                <input id="guestDietDiab" type="checkbox" value="Cukormentes" {...register('guestDiet')} />
+                Cukormentes
               </label>
-              <label htmlFor="guestDietGluten">
+              <label style={fontSize20} htmlFor="guestDietGluten">
                 <input id="guestDietGluten" type="checkbox" value="Gluténmentes" {...register('guestDiet')} />
                 Gluténmentes
               </label>
-              <label htmlFor="guestDietLactose">
+              <label style={fontSize20} htmlFor="guestDietLactose">
                 <input id="guestDietLactose" type="checkbox" value="Laktózmentes" {...register('guestDiet')} />
                 Laktózmentes
               </label>
@@ -131,5 +139,7 @@ function AdditionalGuests({ additionalGuests, setAdditionalGuests }) {
     </>
   );
 }
+
+const fontSize20 = { fontSize: '20px' };
 
 export default AdditionalGuests;

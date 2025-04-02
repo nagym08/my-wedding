@@ -18,7 +18,7 @@ function App() {
       <ConfigProvider
         theme={{
           token: {
-            colorPrimary: '#4f1507',
+            colorPrimary: '#7a3b23',
           },
         }}
       >
@@ -37,9 +37,9 @@ function App() {
               <section id="rsvp">
                 <Rsvp />
               </section>
-              <section id="photo">
+              {/* <section id="photo">
                 <Photo />
-              </section>
+              </section> */}
             </main>
           </div>
         </div>

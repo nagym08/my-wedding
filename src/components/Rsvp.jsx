@@ -37,7 +37,7 @@ function Rsvp() {
     <FormProvider {...formMethods}>
       <div className="section">
         <Section className="flex-column rest-section section-content">
-          <h1>RSVP</h1>
+          <h1>Visszajelzés</h1>
           <form className="flex-column width-100" onSubmit={handleSubmit(submit)}>
             <Controller
               name="name"
@@ -152,8 +152,8 @@ function Rsvp() {
                       Vegán
                     </label>
                     <label htmlFor="dietDiab">
-                      <input id="dietDiab" type="checkbox" value="Diabétesz" {...register('diet')} />
-                      Diabétesz
+                      <input id="dietDiab" type="checkbox" value="Cukormentes" {...register('diet')} />
+                      Cukormentes
                     </label>
                     <label htmlFor="dietGluten">
                       <input id="dietGluten" type="checkbox" value="Gluténmentes" {...register('diet')} />
@@ -165,13 +165,13 @@ function Rsvp() {
                     </label>
                   </div>
                 </div>
-                <Divider style={{ borderColor: '#4f1507', color: '#4f1507' }}>További vendégek</Divider>
+                <Divider style={{ borderColor: '#7a3b23', color: '#7a3b23' }}>További vendégek</Divider>
                 <AdditionalGuests additionalGuests={additionalGuests} setAdditionalGuests={setAdditionalGuests} />
               </>
             )}
             <button
               className="button-59 button-59-primary"
-              style={{ marginTop: '5px' }}
+              style={{ marginTop: '5px', marginBottom: '100px' }}
               type="submit"
               disabled={!isValid}
             >

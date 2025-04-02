@@ -1,6 +1,4 @@
 import React from 'react';
-import headerLeft from '../assets/header-left.JPG';
-import headerRight from '../assets/header-right.JPG';
 
 const Header = () => {
   const now = new Date();
@@ -10,21 +8,21 @@ const Header = () => {
 
   return (
     <div>
-      <div style={{ display: 'flex', width: '100%' }}>
-        {/* <div style={{ flex: '0 0 20%', height: '100%' }}>
-          <img className="header-image" src={headerLeft} />
-        </div> */}
+      <div style={{ display: 'flex', width: '100%', marginTop: '20px' }}>
         <div style={{ flex: '0 0 100%', textAlign: 'center' }}>
           <span className="title">Nóri & Miki</span>
-          <p style={{ color: 'white' }}>2025.09.06. - Lantai birtok, Nagykőrös</p>
-          <p style={{ color: 'white' }}>Már csak {daysToGo} nap!</p>
+          <div style={subTitleStyle}>
+            <span>2025.09.06. - Lantai birtok, Nagykőrös</span>
+          </div>
+          <div style={subTitleStyle}>
+            <span>Már csak {daysToGo} nap!</span>
+          </div>
         </div>
-        {/* <div style={{ flex: '0 0 20%', height: '100%' }}>
-          <img className="header-image" src={headerRight} />
-        </div> */}
       </div>
     </div>
   );
 };
+
+const subTitleStyle = { color: 'white', marginBottom: '15px' };
 
 export default Header;

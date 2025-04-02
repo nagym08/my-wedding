@@ -17,15 +17,22 @@ function LocationInfo() {
               </a>
               ]
             </p>
+            <h4>Megközelítés</h4>
             <p>
-              A szállások lefoglalásában segítünk, amint letisztul a végléges létszám. Szállásáfogalási igényeteket a
-              lentebbi formban tudjátok megtenni!
+              <b>Autóval:</b> az esküvő helyszínén biztosítva lesz parkolási lehetőség azok számára, akik a buli végén
+              autóba pattannának.
             </p>
-            <p>Ha bármilyen kérdésetek van a megközelítéssel kapcsolatban, keressetek minket bátran!</p>
+            <p>
+              <b>Transzferrel:</b> szeretnénk egyszerűbbé tenni a csoportos kiutazást a helyszínre előre egyeztetett
+              transzferrel. Ezt a lehetőséget azoknak tudjuk felajánlani, akik a csoportosan foglalt szálláshelyeket
+              veszik igénybe.
+            </p>
+            <h4>Szállás</h4>
+            <p>
+              Csoportos foglalással igyekszünk megkönnyíteni Nektek a szállásfoglalást a környékbeli településeken. Aki
+              szeretné igénybe venni ezt a lehetőséget az mindenképp jelezze!
+            </p>
           </div>
-          {/* <div style={{ width: '30%' }}>
-            <img className="header-image" src={lantai} />
-          </div> */}
         </div>
       </Section>
     </div>
