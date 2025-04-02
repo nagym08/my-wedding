@@ -94,12 +94,6 @@ body {
   height: auto;
 }
 
-.header-container {
-  display: flex;
-  align-items: stretch;
-  justify-content: space-between;
-}
-
 .title {
   font-family: 'Alex Brush', cursive;
   font-weight: 400;
@@ -140,11 +134,6 @@ body {
   justify-content: space-between;
   align-items: center;
   border: var(--secondary) 0.5px solid;
-  /* padding: 0 10px 0 10px; */
-}
-
-.guest-entry-button-container {
-  gap: 2px;
 }
 
 .button-59 {
@@ -202,4 +191,8 @@ body {
   .button-59 {
     min-width: 170px;
   }
+}
+
+.form-input {
+  margin-bottom: 15px;
 }

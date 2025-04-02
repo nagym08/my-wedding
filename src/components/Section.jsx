@@ -6,7 +6,6 @@ function Section({ className, children }) {
     <div className={className}>
       <img className="section-image upper-section-image" src={symbol2} />
       {children}
-      {/* <img className="section-image lower-section-image" src={symbol2} /> */}
     </div>
   );
 }
