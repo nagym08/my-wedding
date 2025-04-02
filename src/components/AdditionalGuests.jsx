@@ -112,7 +112,7 @@ function AdditionalGuests({ additionalGuests, setAdditionalGuests }) {
               )}
             />
             <span style={{ ...fontSize20, marginTop: '15px' }}>Speciális étrend</span>
-            <div className="flex-row">
+            <div className="diet-container">
               <label style={fontSize20} htmlFor="guestDietVega">
                 <input id="guestDietVega" type="checkbox" value="Vega" {...register('guestDiet')} />
                 Vega

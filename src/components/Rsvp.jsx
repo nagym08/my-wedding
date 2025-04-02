@@ -138,7 +138,7 @@ function Rsvp() {
                 </div>
                 <div className="flex-column form-input">
                   <span>Speciális étrend</span>
-                  <div className="flex-row">
+                  <div className="diet-container">
                     <label htmlFor="dietVega">
                       <input id="dietVega" type="checkbox" value="Vega" {...register('diet')} />
                       Vega
