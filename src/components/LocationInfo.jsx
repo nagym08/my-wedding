@@ -18,20 +18,21 @@ function LocationInfo() {
               ]
             </p>
             <h4>Megközelítés</h4>
-            <p>
+            <span>
               <b>Autóval:</b> az esküvő helyszínén biztosítva lesz parkolási lehetőség azok számára, akik a buli végén
               autóba pattannának.
-            </p>
-            <p>
+            </span>
+            <br />
+            <span>
               <b>Transzferrel:</b> szeretnénk egyszerűbbé tenni a csoportos kiutazást a helyszínre előre egyeztetett
               transzferrel. Ezt a lehetőséget azoknak tudjuk felajánlani, akik a csoportosan foglalt szálláshelyeket
               veszik igénybe.
-            </p>
+            </span>
             <h4>Szállás</h4>
-            <p>
+            <span>
               Csoportos foglalással igyekszünk megkönnyíteni Nektek a szállásfoglalást a környékbeli településeken. Aki
               szeretné igénybe venni ezt a lehetőséget az mindenképp jelezze!
-            </p>
+            </span>
           </div>
         </div>
       </Section>

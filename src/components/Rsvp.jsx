@@ -29,10 +29,6 @@ function Rsvp() {
 
   const isAttending = watch('is_attending');
 
-  const handleChange = (value) => {
-    console.log(`selected ${value}`);
-  };
-
   return (
     <FormProvider {...formMethods}>
       <div className="section">

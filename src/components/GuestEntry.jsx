@@ -4,7 +4,7 @@ import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 
 function GuestEntry({ name, onEdit, onDelete }) {
   return (
-    <div key={name} className="guest-entry width-100">
+    <div key={name} className="guest-entry width-100" style={{ marginBottom: '10px' }}>
       <p style={{ marginLeft: '15px' }}>{name}</p>
       <div style={{ marginRight: '15px' }}>
         <Button

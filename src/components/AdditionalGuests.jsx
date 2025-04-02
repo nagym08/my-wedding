@@ -25,6 +25,7 @@ function AdditionalGuests({ additionalGuests, setAdditionalGuests }) {
       );
 
     setIsOpen(false);
+    setSelectedIndex(undefined);
   };
 
   const editGuest = (idx) => {
