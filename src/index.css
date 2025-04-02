@@ -110,10 +110,6 @@ body {
   margin: 2em;
 }
 
-.lower-section-image {
-  margin-top: 2em;
-}
-
 .width-100 {
   width: 100%;
 }
@@ -195,4 +191,12 @@ body {
 
 .form-input {
   margin-bottom: 15px;
+}
+
+input[type='radio'] {
+  accent-color: var(--secondary);
+}
+
+input[type='checkbox'] {
+  accent-color: var(--secondary);
 }
