@@ -172,15 +172,19 @@ h4 {
 }
 
 .button-59:hover {
-  border-color: #06f;
-  color: #06f;
-  fill: #06f;
+  background-color: #e0a96d;
+  transform: scale(1.05);
+}
+.button-59-primary:hover {
+  background-color: #e0a96d;
+  transform: scale(1.05);
+  color: var(--secondary);
 }
 
 .button-59:active {
-  border-color: #06f;
-  color: #06f;
-  fill: #06f;
+  border-color: #3b8a7a;
+  color: #3b8a7a;
+  fill: #3b8a7a;
 }
 
 .button-59:disabled {
