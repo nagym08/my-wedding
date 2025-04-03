@@ -18,10 +18,15 @@ function AdditionalGuests({ additionalGuests, setAdditionalGuests }) {
 
   const addGuest = () => {
     if (selectedIndex == null)
-      setAdditionalGuests((prev) => [...prev, { name: getValues('name'), email: getValues('email') }]);
+      setAdditionalGuests((prev) => [
+        ...prev,
+        { name: getValues('name'), email: getValues('email'), diet: getValues('diet') },
+      ]);
     else
       setAdditionalGuests((prev) =>
-        prev.map((p, i) => (i === selectedIndex ? { name: getValues('name'), email: getValues('email') } : p))
+        prev.map((p, i) =>
+          i === selectedIndex ? { name: getValues('name'), email: getValues('email'), diet: getValues('diet') } : p
+        )
       );
 
     setIsOpen(false);
@@ -48,8 +53,13 @@ function AdditionalGuests({ additionalGuests, setAdditionalGuests }) {
   useEffect(() => {
     if (selectedIndex === undefined) return;
 
-    if (selectedIndex === null) reset({ name: '', email: '' });
-    else reset({ name: additionalGuests[selectedIndex].name, email: additionalGuests[selectedIndex].email });
+    if (selectedIndex === null) reset({ name: '', email: '', diet: [] });
+    else
+      reset({
+        name: additionalGuests[selectedIndex].name,
+        email: additionalGuests[selectedIndex].email,
+        diet: [...additionalGuests[selectedIndex].diet],
+      });
 
     setIsOpen(true);
   }, [selectedIndex]);
@@ -58,7 +68,12 @@ function AdditionalGuests({ additionalGuests, setAdditionalGuests }) {
     <>
       <div className="flex-column guest-entry-container width-100">
         {additionalGuests.map((guest, index) => (
-          <GuestEntry name={guest.name} onEdit={() => editGuest(index)} onDelete={() => removeGuest(index)} />
+          <GuestEntry
+            key={guest.name}
+            name={guest.name}
+            onEdit={() => editGuest(index)}
+            onDelete={() => removeGuest(index)}
+          />
         ))}
         <button className="button-59" type="button" onClick={handleModalOpen}>
           Vendég hozzáadása
@@ -114,23 +129,23 @@ function AdditionalGuests({ additionalGuests, setAdditionalGuests }) {
             <span style={{ ...fontSize20, marginTop: '15px' }}>Speciális étrend</span>
             <div className="diet-container">
               <label style={fontSize20} htmlFor="guestDietVega">
-                <input id="guestDietVega" type="checkbox" value="Vega" {...register('guestDiet')} />
+                <input id="guestDietVega" type="checkbox" value="Vega" {...register('diet')} />
                 Vega
               </label>
               <label style={fontSize20} htmlFor="guestDietVegan">
-                <input id="guestDietVegan" type="checkbox" value="Vegán" {...register('guestDiet')} />
+                <input id="guestDietVegan" type="checkbox" value="Vegán" {...register('diet')} />
                 Vegán
               </label>
               <label style={fontSize20} htmlFor="guestDietDiab">
-                <input id="guestDietDiab" type="checkbox" value="Cukormentes" {...register('guestDiet')} />
+                <input id="guestDietDiab" type="checkbox" value="Cukormentes" {...register('diet')} />
                 Cukormentes
               </label>
               <label style={fontSize20} htmlFor="guestDietGluten">
-                <input id="guestDietGluten" type="checkbox" value="Gluténmentes" {...register('guestDiet')} />
+                <input id="guestDietGluten" type="checkbox" value="Gluténmentes" {...register('diet')} />
                 Gluténmentes
               </label>
               <label style={fontSize20} htmlFor="guestDietLactose">
-                <input id="guestDietLactose" type="checkbox" value="Laktózmentes" {...register('guestDiet')} />
+                <input id="guestDietLactose" type="checkbox" value="Laktózmentes" {...register('diet')} />
                 Laktózmentes
               </label>
             </div>

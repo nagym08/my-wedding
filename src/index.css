@@ -167,14 +167,11 @@ h4 {
   color: #fff;
 }
 
-.button-59:focus {
-  color: var(--secondary);
-}
-
 .button-59:hover {
   background-color: #e0a96d;
   transform: scale(1.05);
 }
+
 .button-59-primary:hover {
   background-color: #e0a96d;
   transform: scale(1.05);

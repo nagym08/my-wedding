@@ -1,6 +1,5 @@
 import { Navbar } from './components/Navbar';
 import './App.css';
-import Photo from './components/Photo';
 import Schedule from './components/Schedule';
 import LocationInfo from './components/LocationInfo';
 import Rsvp from './components/Rsvp';

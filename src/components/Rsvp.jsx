@@ -1,182 +1,239 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AdditionalGuests from './AdditionalGuests';
 import { FormProvider, useForm, Controller } from 'react-hook-form';
-import useSupabase from '../hooks/useSupabase';
 import Section from './Section';
-import { Divider, Input } from 'antd';
+import { Divider, Input, message } from 'antd';
+import { supabaseClient } from '../App';
 
 function Rsvp() {
-  const { send } = useSupabase();
   const formMethods = useForm({
     defaultValues: { diet: [] },
   });
 
   const [additionalGuests, setAdditionalGuests] = useState([]);
+  const [isSubmitSuccessful, setIsSubmitSuccessful] = useState(false);
+  const [isSubmitError, setIsSubmitError] = useState(false);
+  const [messageApi, contextHolder] = message.useMessage();
+
+  const sendData = async (payload) => {
+    const { data, error } = await supabaseClient.from('guests').insert(payload).select();
+
+    if (error) {
+      setIsSubmitError(true);
+      return;
+    }
+
+    setIsSubmitSuccessful(true);
+  };
+
+  const submitSuccess = () => {
+    messageApi.open({
+      type: 'success',
+      content: 'Sikeres beküldés.',
+    });
+  };
+
+  const submitError = () => {
+    messageApi.open({
+      type: 'error',
+      content: 'Hiba történt a beküldés során. Kérjük, próbálkozz később!',
+    });
+  };
 
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { isValid },
     watch,
     control,
+    reset,
   } = formMethods;
 
   const submit = async (data) => {
-    // const { additionalGuests, ...mainGuest } = data;
-    console.log([data, ...additionalGuests]);
-    // await send([mainGuest, ...additionalGuests]);
+    await sendData([
+      {
+        ...data,
+        requires_accomodation: data.requires_accomodation ?? false,
+        requires_transfer: data.requires_transfer ?? false,
+      },
+      ...additionalGuests.map((ag) => ({
+        ...ag,
+        is_attending: data.is_attending,
+        requires_accomodation: data.requires_accomodation ?? false,
+        requires_transfer: data.requires_transfer ?? false,
+      })),
+    ]);
   };
+
+  useEffect(() => {
+    if (!isSubmitSuccessful) return;
+
+    submitSuccess();
+    reset();
+    setAdditionalGuests([]);
+    setIsSubmitSuccessful(false);
+  }, [isSubmitSuccessful]);
+
+  useEffect(() => {
+    if (!isSubmitError) return;
+
+    submitError();
+    setIsSubmitError(false);
+  }, [isSubmitError]);
 
   const isAttending = watch('is_attending');
 
   return (
-    <FormProvider {...formMethods}>
-      <div className="section">
-        <Section className="flex-column rest-section section-content">
-          <h1>Visszajelzés</h1>
-          <form className="flex-column width-100" onSubmit={handleSubmit(submit)}>
-            <Controller
-              name="name"
-              control={control}
-              rules={{ required: true }}
-              render={({ field }) => (
-                <Input size="large" placeholder="Név" type="text" variant="underlined" {...field} />
-              )}
-            />
-            <Controller
-              name="email"
-              control={control}
-              rules={{
-                required: true,
-                pattern: {
-                  value: /\S+@\S+\.\S+/,
-                  message: 'Érvénytelen e-mail cím formátum',
-                },
-              }}
-              render={({ field }) => (
-                <Input size="large" placeholder="E-mail" type="email" variant="underlined" {...field} />
-              )}
-            />
-            <div className="flex-column form-input" style={{ marginTop: '15px' }}>
-              <span>Részt veszek az esküvőn</span>
-              <div className="flex-row">
-                <label htmlFor="attendanceYes">
-                  <input
-                    id="attendanceYes"
-                    type="radio"
-                    name="attendance"
-                    value={true}
-                    {...register('is_attending', { required: true })}
-                  />
-                  Igen
-                </label>
-                <label htmlFor="attendanceNo">
-                  <input
-                    id="attendanceNo"
-                    type="radio"
-                    name="attendance"
-                    value={false}
-                    {...register('is_attending', { required: true })}
-                  />
-                  Nem
-                </label>
+    <>
+      {contextHolder}
+      <FormProvider {...formMethods}>
+        <div className="section">
+          <Section className="flex-column rest-section section-content">
+            <h1>Visszajelzés</h1>
+            <form className="flex-column width-100" onSubmit={handleSubmit(submit)}>
+              <Controller
+                name="name"
+                control={control}
+                rules={{ required: true }}
+                render={({ field }) => (
+                  <Input size="large" placeholder="Név" type="text" variant="underlined" {...field} />
+                )}
+              />
+              <Controller
+                name="email"
+                control={control}
+                rules={{
+                  required: true,
+                  pattern: {
+                    value: /\S+@\S+\.\S+/,
+                    message: 'Érvénytelen e-mail cím formátum',
+                  },
+                }}
+                render={({ field }) => (
+                  <Input size="large" placeholder="E-mail" type="email" variant="underlined" {...field} />
+                )}
+              />
+              <div className="flex-column form-input" style={{ marginTop: '15px' }}>
+                <span>Részt veszek az esküvőn</span>
+                <div className="flex-row">
+                  <label htmlFor="attendanceYes">
+                    <input
+                      id="attendanceYes"
+                      type="radio"
+                      name="attendance"
+                      value={true}
+                      {...register('is_attending', { required: true })}
+                    />
+                    Igen
+                  </label>
+                  <label htmlFor="attendanceNo">
+                    <input
+                      id="attendanceNo"
+                      type="radio"
+                      name="attendance"
+                      value={false}
+                      {...register('is_attending', { required: true })}
+                    />
+                    Nem
+                  </label>
+                </div>
               </div>
-            </div>
-            {isAttending == 'true' && (
-              <>
-                <div className="flex-column form-input">
-                  <span>Szállást kérek</span>
-                  <div className="flex-row">
-                    <label htmlFor="accomodationYes">
-                      <input
-                        id="accomodationYes"
-                        type="radio"
-                        name="accomodation"
-                        value={true}
-                        {...register('requires_accomodation', { required: true })}
-                      />
-                      Igen
-                    </label>
+              {isAttending == 'true' && (
+                <>
+                  <div className="flex-column form-input">
+                    <span>Szállást kérek</span>
+                    <div className="flex-row">
+                      <label htmlFor="accomodationYes">
+                        <input
+                          id="accomodationYes"
+                          type="radio"
+                          name="accomodation"
+                          value={true}
+                          {...register('requires_accomodation', { required: true })}
+                        />
+                        Igen
+                      </label>
 
-                    <label htmlFor="accomodationNo">
-                      <input
-                        id="accomodationNo"
-                        type="radio"
-                        name="accomodation"
-                        value={false}
-                        {...register('requires_accomodation', { required: true })}
-                      />
-                      Nem
-                    </label>
+                      <label htmlFor="accomodationNo">
+                        <input
+                          id="accomodationNo"
+                          type="radio"
+                          name="accomodation"
+                          value={false}
+                          {...register('requires_accomodation', { required: true })}
+                        />
+                        Nem
+                      </label>
+                    </div>
                   </div>
-                </div>
-                <div className="flex-column form-input">
-                  <span>Transzfert kérek</span>
-                  <div className="flex-row">
-                    <label htmlFor="transferYes">
-                      <input
-                        id="transferYes"
-                        type="radio"
-                        name="transfer"
-                        value={true}
-                        {...register('requires_transfer', { required: true })}
-                      />
-                      Igen
-                    </label>
+                  <div className="flex-column form-input">
+                    <span>Transzfert kérek</span>
+                    <div className="flex-row">
+                      <label htmlFor="transferYes">
+                        <input
+                          id="transferYes"
+                          type="radio"
+                          name="transfer"
+                          value={true}
+                          {...register('requires_transfer', { required: true })}
+                        />
+                        Igen
+                      </label>
 
-                    <label htmlFor="transferNo">
-                      <input
-                        id="transferNo"
-                        type="radio"
-                        name="transfer"
-                        value={false}
-                        {...register('requires_transfer', { required: true })}
-                      />
-                      Nem
-                    </label>
+                      <label htmlFor="transferNo">
+                        <input
+                          id="transferNo"
+                          type="radio"
+                          name="transfer"
+                          value={false}
+                          {...register('requires_transfer', { required: true })}
+                        />
+                        Nem
+                      </label>
+                    </div>
                   </div>
-                </div>
-                <div className="flex-column form-input">
-                  <span>Speciális étrend</span>
-                  <div className="diet-container">
-                    <label htmlFor="dietVega">
-                      <input id="dietVega" type="checkbox" value="Vega" {...register('diet')} />
-                      Vega
-                    </label>
-                    <label htmlFor="dietVegan">
-                      <input id="dietVegan" type="checkbox" value="Vegán" {...register('diet')} />
-                      Vegán
-                    </label>
-                    <label htmlFor="dietDiab">
-                      <input id="dietDiab" type="checkbox" value="Cukormentes" {...register('diet')} />
-                      Cukormentes
-                    </label>
-                    <label htmlFor="dietGluten">
-                      <input id="dietGluten" type="checkbox" value="Gluténmentes" {...register('diet')} />
-                      Gluténmentes
-                    </label>
-                    <label htmlFor="dietLactose">
-                      <input id="dietLactose" type="checkbox" value="Laktózmentes" {...register('diet')} />
-                      Laktózmentes
-                    </label>
+                  <div className="flex-column form-input">
+                    <span>Speciális étrend</span>
+                    <div className="diet-container">
+                      <label htmlFor="dietVega">
+                        <input id="dietVega" type="checkbox" value="Vega" {...register('diet')} />
+                        Vega
+                      </label>
+                      <label htmlFor="dietVegan">
+                        <input id="dietVegan" type="checkbox" value="Vegán" {...register('diet')} />
+                        Vegán
+                      </label>
+                      <label htmlFor="dietDiab">
+                        <input id="dietDiab" type="checkbox" value="Cukormentes" {...register('diet')} />
+                        Cukormentes
+                      </label>
+                      <label htmlFor="dietGluten">
+                        <input id="dietGluten" type="checkbox" value="Gluténmentes" {...register('diet')} />
+                        Gluténmentes
+                      </label>
+                      <label htmlFor="dietLactose">
+                        <input id="dietLactose" type="checkbox" value="Laktózmentes" {...register('diet')} />
+                        Laktózmentes
+                      </label>
+                    </div>
                   </div>
-                </div>
-                <Divider style={{ borderColor: '#7a3b23', color: '#7a3b23' }}>További vendégek</Divider>
-                <AdditionalGuests additionalGuests={additionalGuests} setAdditionalGuests={setAdditionalGuests} />
-              </>
-            )}
-            <button
-              className="button-59 button-59-primary"
-              style={{ marginTop: '5px', marginBottom: '100px' }}
-              type="submit"
-              disabled={!isValid}
-            >
-              Beküldés
-            </button>
-          </form>
-        </Section>
-      </div>
-    </FormProvider>
+                  <Divider style={{ borderColor: '#7a3b23', color: '#7a3b23' }}>További vendégek</Divider>
+                  <AdditionalGuests additionalGuests={additionalGuests} setAdditionalGuests={setAdditionalGuests} />
+                </>
+              )}
+              <button
+                className="button-59 button-59-primary"
+                style={{ marginTop: '5px', marginBottom: '100px' }}
+                type="submit"
+                disabled={!isValid}
+              >
+                Beküldés
+              </button>
+            </form>
+          </Section>
+        </div>
+      </FormProvider>
+    </>
   );
 }
 
