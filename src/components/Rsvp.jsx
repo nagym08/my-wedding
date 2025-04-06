@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import AdditionalGuests from './AdditionalGuests';
 import { FormProvider, useForm, Controller } from 'react-hook-form';
 import Section from './Section';
-import { Divider, Input, message } from 'antd';
+import { Divider, Input, message, Spin } from 'antd';
 import { supabaseClient } from '../App';
 
 function Rsvp() {
@@ -14,6 +14,7 @@ function Rsvp() {
   const [isSubmitSuccessful, setIsSubmitSuccessful] = useState(false);
   const [isSubmitError, setIsSubmitError] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
+  const [isLoading, setIsLoading] = useState(false);
 
   const sendData = async (payload) => {
     const { data, error } = await supabaseClient.from('guests').insert(payload).select();
@@ -50,6 +51,7 @@ function Rsvp() {
   } = formMethods;
 
   const submit = async (data) => {
+    setIsLoading(true);
     await sendData([
       {
         ...data,
@@ -72,6 +74,7 @@ function Rsvp() {
     reset();
     setAdditionalGuests([]);
     setIsSubmitSuccessful(false);
+    setIsLoading(false);
   }, [isSubmitSuccessful]);
 
   useEffect(() => {
@@ -79,6 +82,7 @@ function Rsvp() {
 
     submitError();
     setIsSubmitError(false);
+    setIsLoading(false);
   }, [isSubmitError]);
 
   const isAttending = watch('is_attending');
@@ -233,6 +237,7 @@ function Rsvp() {
           </Section>
         </div>
       </FormProvider>
+      {isLoading && <Spin fullscreen={true} />}
     </>
   );
 }

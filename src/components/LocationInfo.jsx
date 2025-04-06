@@ -9,7 +9,7 @@ function LocationInfo() {
         <h1>Helyszín</h1>
         <div style={{ display: 'flex', width: '100%' }}>
           <div style={{ textAlign: 'center' }}>
-            <h3>Lantai birtok, Nagykőrős</h3>
+            <h3>Lantai birtok, Nagykőrös</h3>
             <p>
               Térkép és útvonaltervező: [
               <a href="https://maps.app.goo.gl/V1Xa7Lo5P7tGpy7Q8" target="_blank" rel="noopener">
@@ -25,14 +25,17 @@ function LocationInfo() {
             <br />
             <span>
               <b>Transzferrel:</b> szeretnénk egyszerűbbé tenni a csoportos kiutazást a helyszínre előre egyeztetett
-              transzferrel. Ezt a lehetőséget azoknak tudjuk felajánlani, akik a csoportosan foglalt szálláshelyeket
-              veszik igénybe.
+              transzferrel. Fontos tudni, hogy a transzfer csak az általunk szervezett szálláshelyeken áll meg!
             </span>
             <h4>Szállás</h4>
             <span>
               Csoportos foglalással igyekszünk megkönnyíteni Nektek a szállásfoglalást a környékbeli településeken. Aki
-              szeretné igénybe venni ezt a lehetőséget az mindenképp jelezze!
+              szeretné igénybe venni ezt a lehetőséget az mindenképpen jelezze!
             </span>
+            <p>
+              További információkkal e-mailben értesítünk majd Titeket, de addig is ha bármi kérdésetek lenne keressétek
+              bátran minket!
+            </p>
           </div>
         </div>
       </Section>
