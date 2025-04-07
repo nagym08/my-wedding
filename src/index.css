@@ -113,7 +113,7 @@ h4 {
   width: 60%;
 }
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 1180px) {
   .section-content {
     width: 80%;
   }
@@ -213,9 +213,10 @@ input[type='checkbox'] {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  gap: 10px;
 }
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 1180px) {
   .diet-container {
     display: flex;
     flex-direction: column;

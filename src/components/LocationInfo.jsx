@@ -33,8 +33,8 @@ function LocationInfo() {
               szeretné igénybe venni ezt a lehetőséget az mindenképpen jelezze!
             </span>
             <p>
-              További információkkal e-mailben értesítünk majd Titeket, de addig is ha bármi kérdésetek lenne keressétek
-              bátran minket!
+              További információkkal e-mailben értesítünk majd Titeket, de addig is ha bármi kérdésetek lenne keressetek
+              minket bátran!
             </p>
           </div>
         </div>

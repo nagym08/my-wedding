@@ -11,7 +11,7 @@ function AdditionalGuests({ additionalGuests, setAdditionalGuests }) {
     control,
     formState: { isValid },
   } = useForm({
-    defaultValues: { name: '', email: '', diet: [] },
+    defaultValues: { name: '', email: '', diet: [], other: '' },
   });
   const [isOpen, setIsOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(undefined);
@@ -20,12 +20,14 @@ function AdditionalGuests({ additionalGuests, setAdditionalGuests }) {
     if (selectedIndex == null)
       setAdditionalGuests((prev) => [
         ...prev,
-        { name: getValues('name'), email: getValues('email'), diet: getValues('diet') },
+        { name: getValues('name'), email: getValues('email'), diet: getValues('diet'), other: getValues('other') },
       ]);
     else
       setAdditionalGuests((prev) =>
         prev.map((p, i) =>
-          i === selectedIndex ? { name: getValues('name'), email: getValues('email'), diet: getValues('diet') } : p
+          i === selectedIndex
+            ? { name: getValues('name'), email: getValues('email'), diet: getValues('diet'), other: getValues('other') }
+            : p
         )
       );
 
@@ -53,12 +55,13 @@ function AdditionalGuests({ additionalGuests, setAdditionalGuests }) {
   useEffect(() => {
     if (selectedIndex === undefined) return;
 
-    if (selectedIndex === null) reset({ name: '', email: '', diet: [] });
+    if (selectedIndex === null) reset({ name: '', email: '', diet: [], other: '' });
     else
       reset({
         name: additionalGuests[selectedIndex].name,
         email: additionalGuests[selectedIndex].email,
         diet: [...additionalGuests[selectedIndex].diet],
+        other: additionalGuests[selectedIndex].other,
       });
 
     setIsOpen(true);
@@ -110,7 +113,7 @@ function AdditionalGuests({ additionalGuests, setAdditionalGuests }) {
               control={control}
               rules={{ required: true }}
               render={({ field }) => (
-                <Input size="large" placeholder="Név" type="text" variant="underlined" {...field} />
+                <Input size="large" placeholder="Név*" type="text" variant="underlined" {...field} />
               )}
             />
             <Controller
@@ -148,6 +151,15 @@ function AdditionalGuests({ additionalGuests, setAdditionalGuests }) {
                 <input id="guestDietLactose" type="checkbox" value="Laktózmentes" {...register('diet')} />
                 Laktózmentes
               </label>
+            </div>
+            <div>
+              <Controller
+                name="other"
+                control={control}
+                render={({ field }) => (
+                  <Input size="large" placeholder="Egyéb" type="text" variant="underlined" {...field} />
+                )}
+              />
             </div>
           </form>
         </div>

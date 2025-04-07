@@ -54,15 +54,20 @@ function Rsvp() {
     setIsLoading(true);
     await sendData([
       {
-        ...data,
-        requires_accomodation: data.requires_accomodation ?? false,
-        requires_transfer: data.requires_transfer ?? false,
-      },
-      ...additionalGuests.map((ag) => ({
-        ...ag,
+        name: data.name,
+        email: data.email,
         is_attending: data.is_attending,
         requires_accomodation: data.requires_accomodation ?? false,
         requires_transfer: data.requires_transfer ?? false,
+        diet: data.other ? [...data.diet, data.other] : [...data.diet],
+      },
+      ...additionalGuests.map((ag) => ({
+        name: ag.name,
+        email: ag.email,
+        is_attending: data.is_attending,
+        requires_accomodation: data.requires_accomodation ?? false,
+        requires_transfer: data.requires_transfer ?? false,
+        diet: ag.other ? [...ag.diet, ag.other] : [...ag.diet],
       })),
     ]);
   };
@@ -100,7 +105,7 @@ function Rsvp() {
                 control={control}
                 rules={{ required: true }}
                 render={({ field }) => (
-                  <Input size="large" placeholder="Név" type="text" variant="underlined" {...field} />
+                  <Input size="large" placeholder="Név*" type="text" variant="underlined" {...field} />
                 )}
               />
               <Controller
@@ -114,11 +119,11 @@ function Rsvp() {
                   },
                 }}
                 render={({ field }) => (
-                  <Input size="large" placeholder="E-mail" type="email" variant="underlined" {...field} />
+                  <Input size="large" placeholder="E-mail*" type="email" variant="underlined" {...field} />
                 )}
               />
               <div className="flex-column form-input" style={{ marginTop: '15px' }}>
-                <span>Részt veszek az esküvőn</span>
+                <span>Részt veszek az esküvőn*</span>
                 <div className="flex-row">
                   <label htmlFor="attendanceYes">
                     <input
@@ -145,7 +150,7 @@ function Rsvp() {
               {isAttending == 'true' && (
                 <>
                   <div className="flex-column form-input">
-                    <span>Szállást kérek</span>
+                    <span>Szállást kérek*</span>
                     <div className="flex-row">
                       <label htmlFor="accomodationYes">
                         <input
@@ -171,7 +176,7 @@ function Rsvp() {
                     </div>
                   </div>
                   <div className="flex-column form-input">
-                    <span>Transzfert kérek</span>
+                    <span>Transzfert kérek*</span>
                     <div className="flex-row">
                       <label htmlFor="transferYes">
                         <input
@@ -219,6 +224,15 @@ function Rsvp() {
                         <input id="dietLactose" type="checkbox" value="Laktózmentes" {...register('diet')} />
                         Laktózmentes
                       </label>
+                    </div>
+                    <div>
+                      <Controller
+                        name="other"
+                        control={control}
+                        render={({ field }) => (
+                          <Input size="large" placeholder="Egyéb" type="text" variant="underlined" {...field} />
+                        )}
+                      />
                     </div>
                   </div>
                   <Divider style={{ borderColor: '#7a3b23', color: '#7a3b23' }}>További vendégek</Divider>
